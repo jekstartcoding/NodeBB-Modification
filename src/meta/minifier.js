@@ -162,10 +162,11 @@ actions.buildCSS = async function buildCSS(data) {
 	try {
 		const opts = {
 			loadPaths: data.paths,
+			importers: [new sass.NodePackageImporter()],
 		};
 		if (data.minify) {
 			opts.silenceDeprecations = [
-				'legacy-js-api', 'mixed-decls', 'color-functions',
+				'legacy-js-api', 'color-functions',
 				'global-builtin', 'import',
 			];
 		}
