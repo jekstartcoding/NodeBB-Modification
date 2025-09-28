@@ -9,3 +9,119 @@
 .skin-minty .btn {
 	color: initial!important;
 }
+
+// Accessibility contrast fixes using Bootstrap CSS variables (supports both light and dark themes)
+.text-secondary {
+	color: var(--bs-secondary-color) !important; // Uses Bootstrap's responsive secondary color
+}
+
+.link-secondary {
+	color: var(--bs-secondary-color) !important; // Uses Bootstrap's responsive secondary color
+	
+	&:hover,
+	&:focus {
+		color: var(--bs-body-color) !important; // Uses main body color for better contrast
+	}
+}
+
+.text-decoration-underline {
+	color: var(--bs-secondary-color) !important;
+	text-decoration-color: var(--bs-secondary-color) !important;
+	
+	&:hover,
+	&:focus {
+		color: var(--bs-body-color) !important;
+		text-decoration-color: var(--bs-body-color) !important;
+	}
+}
+
+// Specific fixes for description text and small text
+.description.text-secondary {
+	color: var(--bs-secondary-color) !important;
+}
+
+p.text-secondary.text-sm {
+	color: var(--bs-secondary-color) !important;
+	
+	&.fst-italic {
+		color: var(--bs-secondary-color) !important;
+	}
+}
+
+// Conditional styling for dark skins - more aggressive contrast fixes
+.skin-cyborg,
+.skin-darkly,
+.skin-quartz,
+.skin-slate,
+.skin-solar,
+.skin-superhero,
+.skin-vapor {
+	.text-secondary {
+		color: #adb5bd !important; // Lighter for dark themes
+	}
+	
+	.link-secondary {
+		color: #adb5bd !important;
+		
+		&:hover,
+		&:focus {
+			color: #f8f9fa !important;
+		}
+	}
+	
+	.text-decoration-underline {
+		color: #adb5bd !important;
+		text-decoration-color: #adb5bd !important;
+		
+		&:hover,
+		&:focus {
+			color: #f8f9fa !important;
+			text-decoration-color: #f8f9fa !important;
+		}
+	}
+}
+
+// Conditional styling for light skins - ensure proper contrast
+.skin-brite,
+.skin-cerulean,
+.skin-cosmo,
+.skin-flatly,
+.skin-journal,
+.skin-litera,
+.skin-lumen,
+.skin-lux,
+.skin-materia,
+.skin-minty,
+.skin-morph,
+.skin-pulse,
+.skin-sandstone,
+.skin-simplex,
+.skin-sketchy,
+.skin-spacelab,
+.skin-united,
+.skin-yeti,
+.skin-zephyr {
+	.text-secondary {
+		color: #6c757d !important; // Standard Bootstrap secondary for light themes
+	}
+	
+	.link-secondary {
+		color: #6c757d !important;
+		
+		&:hover,
+		&:focus {
+			color: #495057 !important;
+		}
+	}
+	
+	.text-decoration-underline {
+		color: #6c757d !important;
+		text-decoration-color: #6c757d !important;
+		
+		&:hover,
+		&:focus {
+			color: #495057 !important;
+			text-decoration-color: #495057 !important;
+		}
+	}
+}

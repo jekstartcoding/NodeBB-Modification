@@ -20,7 +20,7 @@ $light: $gray-100 !default;
 $dark: $gray-800 !default;
 
 $body-color: $gray-800 !default;
-$text-muted: $gray-600 !default;
+$text-muted: $gray-500 !default; // Changed to lighter gray for better contrast on dark themes
 
 $btn-ghost-color: rgb(73, 80, 87);
 $btn-ghost-hover-color: mix($light, $dark, 90%);
@@ -48,7 +48,6 @@ $enable-smooth-scroll: false;
 
 $enable-shadows: true;
 
-
 // Buttons
 $input-btn-padding-y:       .4rem !default;
 $input-btn-padding-x:       1rem !default;
@@ -68,3 +67,44 @@ $input-focus-border-color: #c29ffa80 !default;
 // change inset shadow to outset
 $box-shadow-inset: 0 1px 2px rgba($black, .075) !default;
 
+// Accessibility contrast fixes using Bootstrap CSS variables (auto-adapts to theme)
+// Override Bootstrap text utilities for better contrast
+.text-secondary {
+    color: var(--bs-secondary-color) !important; // Uses Bootstrap's theme-aware secondary color
+}
+
+.link-secondary {
+    color: var(--bs-secondary-color) !important; // Uses Bootstrap's theme-aware secondary color
+    
+    &:hover,
+    &:focus {
+        color: var(--bs-body-color) !important; // Uses main body color for contrast
+    }
+}
+
+.text-decoration-underline {
+    color: var(--bs-secondary-color) !important;
+    text-decoration-color: var(--bs-secondary-color) !important;
+    
+    &:hover,
+    &:focus {
+        color: var(--bs-body-color) !important;
+        text-decoration-color: var(--bs-body-color) !important;
+    }
+}
+
+// Specific overrides for category descriptions and small text
+.description.text-secondary,
+p.text-secondary.text-sm {
+    color: var(--bs-secondary-color) !important;
+}
+
+// Override for copy action links
+a[data-action="copy"] {
+    color: var(--bs-secondary-color) !important;
+    
+    &:hover,
+    &:focus {
+        color: var(--bs-body-color) !important;
+    }
+}
