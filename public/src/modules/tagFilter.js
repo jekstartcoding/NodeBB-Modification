@@ -1,3 +1,4 @@
+tagFilter.js
 'use strict';
 
 define('tagFilter', ['hooks', 'alerts', 'bootstrap'], function (hooks, alerts, bootstrap) {
