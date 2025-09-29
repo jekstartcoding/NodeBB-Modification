@@ -1,0 +1,14 @@
+config:
+  target: "http://localhost:4567/topic/3/republic"
+  phases:
+    - duration: 20   # total hanya 20 detik
+      arrivalRate: 5 # 5 request per detik
+  plugins:
+    apdex:
+      threshold: 100   # pakai 100ms threshold biar kelihatan "satisfied"
+    metrics-by-endpoint: {}
+
+scenarios:
+  - flow:
+      - get:
+          url: "/"

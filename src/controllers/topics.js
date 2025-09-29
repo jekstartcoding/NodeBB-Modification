@@ -31,7 +31,7 @@ topicsController.get = async function getTopic(req, res, next) {
 		return next();
 	}
 	let postIndex = parseInt(req.params.post_index, 10) || 1;
-	const topicData = await topics.getTopicData(tid);
+	const topicData = await topics.getTopicData(tid); 	//add topic to reduce queries
 	if (!topicData) {
 		return next();
 	}
@@ -40,7 +40,7 @@ topicsController.get = async function getTopic(req, res, next) {
 		settings,
 		rssToken,
 	] = await Promise.all([
-		privileges.topics.get(tid, req.uid),
+		privileges.topics.get(tid, req.uid, topicData), //add topic to reduce queries
 		user.getSettings(req.uid),
 		user.auth.getFeedToken(req.uid),
 	]);
@@ -387,12 +387,12 @@ topicsController.pagination = async function (req, res, next) {
 	if (!utils.isNumber(tid)) {
 		return next();
 	}
-	const topic = await topics.getTopicData(tid);
+	const topic = await topics.getTopicData(tid); //add topic to reduce queries
 	if (!topic) {
 		return next();
 	}
 	const [userPrivileges, settings] = await Promise.all([
-		privileges.topics.get(tid, req.uid),
+		privileges.topics.get(tid, req.uid, topic), //add topic to reduce queries
 		user.getSettings(req.uid),
 	]);
 

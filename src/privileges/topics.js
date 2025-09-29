@@ -1,4 +1,3 @@
-
 'use strict';
 
 const _ = require('lodash');
@@ -14,7 +13,7 @@ const privsCategories = require('./categories');
 
 const privsTopics = module.exports;
 
-privsTopics.get = async function (tid, uid) {
+privsTopics.get = async function (tid, uid, topicDataFromCaller) {
 	uid = parseInt(uid, 10);
 
 	const privs = [
@@ -23,7 +22,7 @@ privsTopics.get = async function (tid, uid) {
 		'posts:upvote', 'posts:downvote',
 		'posts:delete', 'posts:view_deleted', 'read', 'purge',
 	];
-	const topicData = await topics.getTopicFields(tid, ['cid', 'uid', 'locked', 'deleted', 'scheduled']);
+	const topicData = topicDataFromCaller || await topics.getTopicFields(tid, ['cid', 'uid', 'locked', 'deleted', 'scheduled']); //add topicDataFromCaller
 	const [userPrivileges, isAdministrator, isModerator, disabled, topicTools] = await Promise.all([
 		helpers.isAllowedTo(privs, uid, topicData.cid),
 		user.isAdministrator(uid),
